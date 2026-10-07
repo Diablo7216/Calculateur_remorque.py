@@ -173,4 +173,4 @@ if st.session_state.palettes:
 
     st.subheader("Résumé")
 
-    st.
+    st
