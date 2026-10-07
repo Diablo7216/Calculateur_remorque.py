@@ -87,4 +87,4 @@ if st.button("Effacer"):
 
 st.markdown("---")
 st.caption("© 2026 Fred Béland")
-``
+
