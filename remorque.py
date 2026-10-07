@@ -37,7 +37,7 @@ for i, p in enumerate(st.session_state.palettes):
 
     with col1:
         st.write(
-            f"{i+1}. {p['quantite']} x {p['largeur'\]:.0f}\" x {p['longueur'\]:.0f}\""
+          f'{i+1}. {p["quantite"]} x {p["largeur"]:.0f}" x {p["longueur"]:.0.0f}"'
         )
 
     with col2:
