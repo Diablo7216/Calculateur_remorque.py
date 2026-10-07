@@ -32,4 +32,4 @@ if st.button("Ajouter palette"):
         "quantite": quantite
     })
 
-st.
+st
