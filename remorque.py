@@ -31,10 +31,20 @@ if st.button("Ajouter palette"):
 
 st.subheader("Palettes ajoutées")
 
-for i, p in enumerate(st.session_state.palettes, start=1):
-    st.write(
-        f"{i}. {p['quantite']} x {p['largeur']:.0f}\" x {p['longueur']:.0f}\""
-    )
+for i, p in enumerate(st.session_state.palettes):
+
+    col1, col2 = st.columns([5, 1])
+
+    with col1:
+        st.write(
+            f"{i+1}. {p['quantite']} x {p['largeur'\]:.0f}\" x {p['longueur'\]:.0f}\""
+        )
+
+    with col2:
+        if st.button("🗑️", key=f"supprimer_{i}"):
+
+            st.session_state.palettes.pop(i)
+            st.rerun()
 
 if st.button("Calculer"):
 
