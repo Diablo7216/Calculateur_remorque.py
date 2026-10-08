@@ -65,7 +65,7 @@ else:
 
         with col1:
             st.write(
-                f"{i+1}. {p['quantite']} x {p['largeur']:.0f} po × {p['longueur''\]:.0f} po"
+                f"{i+1}. {p['quantite']} x {p['largeur']:.0f} po × {p['longueur'']:.0f} po"
             )
 
        
