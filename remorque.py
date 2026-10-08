@@ -17,23 +17,13 @@ st.write("Calcul de l'espace plancher utilisé dans une remorque de 53 pieds.")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    largeur = st.number_input(
-        "Largeur (po)",
-        min_value=1.0
-    )
+    largeur = st.number_input("Largeur (po)", min_value=1.0)
 
 with col2:
-    longueur = st.number_input(
-        "Longueur (po)",
-        min_value=1.0
-    )
+    longueur = st.number_input("Longueur (po)", min_value=1.0)
 
 with col3:
-    quantite = st.number_input(
-        "Quantité",
-        min_value=1,
-        step=1
-    )
+    quantite = st.number_input("Quantité", min_value=1, step=1)
 
 if st.button("➕ Ajouter palette"):
     st.session_state.palettes.append({
@@ -46,7 +36,7 @@ st.subheader("📦 Palettes ajoutées")
 
 for i, p in enumerate(st.session_state.palettes, start=1):
     st.write(
-       f"{i}. {p['quantite']} x {int(p['largeur'])} x {int(p['longueur'])}"
+        f"{i}. {p['quantite']} x {int(p['largeur'])} x {int(p['longueur'])}"
     )
 
 if st.button("📊 Calculer"):
@@ -69,4 +59,43 @@ if st.button("📊 Calculer"):
 
         palettes_par_rangee_2 = max(
             1,
-            int
+            int(LARGEUR_REMORQUE // dim2)
+        )
+
+        rangees_2 = -(-qty // palettes_par_rangee_2)
+        longueur_2 = rangees_2 * dim1
+
+        meilleure_longueur = min(
+            longueur_1,
+            longueur_2
+        )
+
+        longueur_totale_pouces += meilleure_longueur
+
+    pieds_lineaires = longueur_totale_pouces / 12
+    pourcentage = (pieds_lineaires / LONGUEUR_REMORQUE) * 100
+    reste = LONGUEUR_REMORQUE - pieds_lineaires
+
+    total_palettes = sum(
+        p["quantite"]
+        for p in st.session_state.palettes
+    )
+
+    st.success(
+        f"""
+📦 Nombre de palettes : {total_palettes}
+
+📏 Pieds linéaires utilisés : {pieds_lineaires:.2f} pi
+
+🚛 Utilisation remorque 53' : {pourcentage:.1f} %
+
+✅ Espace restant : {reste:.2f} pi
+"""
+    )
+
+if st.button("🗑️ Effacer"):
+    st.session_state.palettes = []
+    st.rerun()
+
+st.markdown("---")
+st.caption("© 2026 Fred Béland")
