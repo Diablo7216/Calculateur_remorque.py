@@ -76,10 +76,10 @@ if st.button("📊 Calculer"):
     pourcentage = (pieds_lineaires / LONGUEUR_REMORQUE) * 100
     reste = LONGUEUR_REMORQUE - pieds_lineaires
 
-    total_palettes = sum(
-        p["quantite"]
-        for p in st.session_state.palettes
-    )
+  total_palettes = sum(
+    p["quantite"]
+    for p in st.session_state.palettes
+)
 
 st.success(
     f"""
