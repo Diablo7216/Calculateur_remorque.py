@@ -1,50 +1,3 @@
-import streamlit as st
-
-LARGEUR_REMORQUE = 102  # pouces
-LONGUEUR_REMORQUE = 53  # pieds
-
-if "palettes" not in st.session_state:
-    st.session_state.palettes = []
-
-st.set_page_config(page_title="Calculateur Remorque", layout="centered")
-
-st.title("🚛 Calculateur d'espace remorque")
-st.write("Calcul de l'espace plancher utilisé dans une remorque de 53 pieds.")
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    largeur = st.number_input("Largeur (po)", min_value=1.0)
-
-with col2:
-    longueur = st.number_input("Longueur (po)", min_value=1.0)
-
-with col3:
-    quantite = st.number_input("Quantité", min_value=1, step=1)
-
-if st.button("Ajouter palette"):
-    st.session_state.palettes.append({
-        "largeur": largeur,
-        "longueur": longueur,
-        "quantite": quantite
-    })
-
-st.subheader("Palettes ajoutées")
-
-for i, p in enumerate(st.session_state.palettes):
-
-    col1, col2 = st.columns([5, 1])
-
-    with col1:
-        st.write(
-            f"{i+1}. {p['quantite']} x {p['largeur']:.0f} po xx {p['longueur']:.0f} po"
-        )
-
-    with col2:
-        if st.button("🗑️", key=f"supprimer_{i}"):
-            st.session_state.palettes.pop(i)
-            st.rerun()
-
 if st.button("Calculer"):
 
     longueur_totale_pouces = 0
@@ -80,44 +33,22 @@ if st.button("Calculer"):
     pourcentage = (pieds_lineaires / LONGUEUR_REMORQUE) * 100
     reste = LONGUEUR_REMORQUE - pieds_lineaires
 
-  st.subheader("📊 Résumé du chargement")
-
-total_palettes = sum(
-    p["quantite"]
-    for p in st.session_state.palettes
-)
-
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
-    st.metric(
-        "📦 Palettes",
-        total_palettes
+    total_palettes = sum(
+        p["quantite"]
+        for p in st.session_state.palettes
     )
 
-with col2:
-    st.metric(
-        "📏 Pieds utilisés",
-        f"{pieds_lineaires:.1f}"
-    )
-
-with col3:
-    st.metric(
-        "🚛 Utilisation",
-        f"{pourcentage:.1f}%"
-    )
-
-with col4:
-    st.metric(
-        "✅ Espace libre",
-        f"{reste:.1f} pi"
-    )
-
-st.write("")
-
-if st.button("🗑️ Effacer toutes les palettes"):
-    st.session_state.palettes = []
-    st.rerun()
-
-st.markdown("---")
-st.caption("© 2026 Fred Béland")
+    st.markdown(f"""
+    <div style="
+        background-color:#d4edda;
+        padding:20px;
+        border-radius:10px;
+        border-left:6px solid #28a745;
+        font-size:18px;
+    ">
+        <b>📦 Nombre de palettes :</b> {total_palettes}<br><br>
+        <b>📏 Pieds linéaires utilisés :</b> {pieds_lineaires:.2f} pi<br><br>
+        <b>🚛 Utilisation remorque 53' :</b> {pourcentage:.1f}%<br><br>
+        <b>✅ Espace restant :</b> {reste:.2f} pi
+    </div>
+    """, unsafe_allow_html=True)
