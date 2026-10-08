@@ -50,13 +50,43 @@ if st.button("Calculer"):
     pieds_lineaires = longueur_totale_pouces / 12
     pourcentage = (pieds_lineaires / LONGUEUR_REMORQUE) * 100
     reste = LONGUEUR_REMORQUE - pieds_lineaires
-    st.success(
-        f"""
-        Pieds linéaires utilisés : {pieds_lineaires:.2f} pi
-        Utilisation remorque 53' : {pourcentage:.1f} %
-        Espace restant : {reste:.2f} pi
-        """
+       total_palettes = sum(
+        p["quantite"]
+        for p in st.session_state.palettes
     )
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color:#d4edda;
+            padding:20px;
+            border-radius:12px;
+            border-left:6px solid #198754;
+            margin-top:10px;
+        ">
+            <h3 style="margin-top:0;">📊 Résumé du chargement</h3>
+
+            <p style="font-size:18px;">
+            📦 <b>Nombre de palettes :</b> {total_palettes}
+            </p>
+
+            <p style="font-size:18px;">
+            📏 <b>Pieds linéaires utilisés :</b> {pieds_lineaires:.2f} pi
+            </p>
+
+            <p style="font-size:18px;">
+            🚛 <b>Utilisation remorque 53' :</b> {pourcentage:.1f} %
+            </p>
+
+            <p style="font-size:18px;">
+            ✅ <b>Espace restant :</b> {reste:.2f} pi
+            </p>
+
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+`
 if st.button("Effacer"):
     st.session_state.palettes = []
     st.rerun()
