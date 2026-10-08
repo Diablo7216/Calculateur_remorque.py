@@ -94,5 +94,15 @@ if st.button("Effacer"):
     st.session_state.palettes = []
     st.rerun()
 
+total_palettes = sum(
+    p["quantite"]
+    for p in st.session_state.palettes
+)
+
+st.metric(
+    "Nb palettes",
+    total_palettes
+)
+
 st.markdown("---")
 st.caption("© 2026 Fred Béland")
