@@ -76,13 +76,13 @@ if st.button("📊 Calculer"):
     pourcentage = (pieds_lineaires / LONGUEUR_REMORQUE) * 100
     reste = LONGUEUR_REMORQUE - pieds_lineaires
 
-  total_palettes = sum(
-    p["quantite"]
-    for p in st.session_state.palettes
-)
+    total_palettes = sum(
+        p["quantite"]
+        for p in st.session_state.palettes
+    )
 
-st.success(
-    f"""
+    st.success(
+        f"""
 📦 Nombre de palettes : {total_palettes}
 
 📏 Pieds linéaires utilisés : {pieds_lineaires:.2f} pi
@@ -91,7 +91,8 @@ st.success(
 
 ✅ Espace restant : {reste:.2f} pi
 """
-)
+    )
+
 if st.button("🗑️ Effacer"):
     st.session_state.palettes = []
     st.rerun()
