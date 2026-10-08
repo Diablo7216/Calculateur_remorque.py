@@ -81,9 +81,9 @@ if st.button("📊 Calculer"):
         for p in st.session_state.palettes
     )
 
-    st.success(
-        f"""
-  📦 Nombre de palettes : {total_palettes}
+st.success(
+    f"""
+📦 Nombre de palettes : {total_palettes}
 
 📏 Pieds linéaires utilisés : {pieds_lineaires:.2f} pi
 
@@ -91,8 +91,7 @@ if st.button("📊 Calculer"):
 
 ✅ Espace restant : {reste:.2f} pi
 """
-    )
-
+)
 if st.button("🗑️ Effacer"):
     st.session_state.palettes = []
     st.rerun()
