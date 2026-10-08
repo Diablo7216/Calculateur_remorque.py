@@ -80,29 +80,44 @@ if st.button("Calculer"):
     pourcentage = (pieds_lineaires / LONGUEUR_REMORQUE) * 100
     reste = LONGUEUR_REMORQUE - pieds_lineaires
 
-    st.success(
-        f"""
-        Pieds linéaires utilisés : {pieds_lineaires:.2f} pi
-
-        Utilisation remorque 53' : {pourcentage:.1f} %
-
-        Espace restant : {reste:.2f} pi
-        """
-    )
-
-if st.button("Effacer"):
-    st.session_state.palettes = []
-    st.rerun()
+  st.subheader("📊 Résumé du chargement")
 
 total_palettes = sum(
     p["quantite"]
     for p in st.session_state.palettes
 )
 
-st.metric(
-    "Nb palettes",
-    total_palettes
-)
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.metric(
+        "📦 Palettes",
+        total_palettes
+    )
+
+with col2:
+    st.metric(
+        "📏 Pieds utilisés",
+        f"{pieds_lineaires:.1f}"
+    )
+
+with col3:
+    st.metric(
+        "🚛 Utilisation",
+        f"{pourcentage:.1f}%"
+    )
+
+with col4:
+    st.metric(
+        "✅ Espace libre",
+        f"{reste:.1f} pi"
+    )
+
+st.write("")
+
+if st.button("🗑️ Effacer toutes les palettes"):
+    st.session_state.palettes = []
+    st.rerun()
 
 st.markdown("---")
 st.caption("© 2026 Fred Béland")
