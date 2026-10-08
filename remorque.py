@@ -92,19 +92,17 @@ if st.button("📊 Calculer"):
     else:
         st.info("🟢 Espace disponible")
 
-    st.progress(min(int(pourcentage), 100))
+        st.progress(min(pourcentage / 100, 1.0))
 
-    st.progress(pourcentage / 100)
+    col1, col2, col3 = st.columns(3)
 
-col1, col2, col3 = st.columns(3)
-
-with col1:
+    with col1:
     st.markdown("<div style='text-align:left'>0%</div>", unsafe_allow_html=True)
 
-with col2:
+    with col2:
     st.markdown("<div style='text-align:center'>50%</div>", unsafe_allow_html=True)
 
-with col3:
+    with col3:
     st.markdown("<div style='text-align:right'>100%</div>", unsafe_allow_html=True)
 
     st.caption(
