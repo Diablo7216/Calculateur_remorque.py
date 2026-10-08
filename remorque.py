@@ -94,8 +94,7 @@ else:
 
 st.progress(min(int(pourcentage), 100))
 
-    st.caption(
-        f"Remplissage de la remorque : {pourcentage:.1f}%"
+    st.caption(f"Remplissage de la remorque : {pourcentage:.1f}%")
     )
 
     total_palettes = sum(
