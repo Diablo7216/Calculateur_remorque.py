@@ -81,20 +81,21 @@ if st.button("📊 Calculer"):
 
         longueur_totale_pouces += meilleure_longueur
 
-pieds_lineaires = longueur_totale_pouces / 12
-pourcentage = (pieds_lineaires / LONGUEUR_REMORQUE) * 100
-reste = LONGUEUR_REMORQUE - pieds_lineaires
+    pieds_lineaires = longueur_totale_pouces / 12
+    pourcentage = (pieds_lineaires / LONGUEUR_REMORQUE) * 100
+    reste = LONGUEUR_REMORQUE - pieds_lineaires
 
-if pourcentage > 90:
-    st.error("🔴 Remorque presque pleine")
-elif pourcentage > 75:
-    st.warning("🟡 Attention : espace limité")
-else:
-    st.info("🟢 Espace disponible")
+    if pourcentage > 90:
+        st.error("🔴 Remorque presque pleine")
+    elif pourcentage > 75:
+        st.warning("🟡 Attention : espace limité")
+    else:
+        st.info("🟢 Espace disponible")
 
-st.progress(min(int(pourcentage), 100))
+    st.progress(min(int(pourcentage), 100))
 
-    st.caption(f"Remplissage de la remorque : {pourcentage:.1f}%")
+    st.caption(
+        f"Remplissage de la remorque : {pourcentage:.1f}%"
     )
 
     total_palettes = sum(
@@ -104,7 +105,7 @@ st.progress(min(int(pourcentage), 100))
 
     st.success(
         f"""
-&nbsp;📦 Nombre de palettes : {total_palettes}
+📦 Nombre de palettes : {total_palettes}
 
 📏 Pieds linéaires utilisés : {pieds_lineaires:.2f} pi
 
