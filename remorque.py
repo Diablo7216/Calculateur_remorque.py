@@ -46,7 +46,7 @@ st.subheader("📦 Palettes ajoutées")
 
 for i, p in enumerate(st.session_state.palettes, start=1):
     st.write(
-        f"{i}. {p['quantite']} x {p['largeur']:.0f}\" x {p['longueur'']:.0f}\""
+       f"{i}. {p['quantite']} x {int(p['largeur'])} x {int(p['longueur'])}"
     )
 
 if st.button("📊 Calculer"):
