@@ -17,10 +17,10 @@ st.write("Calcul de l'espace plancher utilisé dans une remorque de 53 pieds.")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    largeur = st.number_input("Largeur (po)", min_value=1.0)
+    largeur = st.number_input("Largeur (po)", min_value=1)
 
 with col2:
-    longueur = st.number_input("Longueur (po)", min_value=1.0)
+    longueur = st.number_input("Longueur (po)", min_value=1)
 
 with col3:
     quantite = st.number_input("Quantité", min_value=1, step=1)
