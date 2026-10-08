@@ -83,7 +83,7 @@ if st.button("📊 Calculer"):
 
     st.success(
         f"""
-📦 Nombre de palettes : {total_palettes}
+  📦 Nombre de palettes : {total_palettes}
 
 📏 Pieds linéaires utilisés : {pieds_lineaires:.2f} pi
 
