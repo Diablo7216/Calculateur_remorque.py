@@ -85,6 +85,14 @@ if st.button("📊 Calculer"):
     pourcentage = (pieds_lineaires / LONGUEUR_REMORQUE) * 100
     reste = LONGUEUR_REMORQUE - pieds_lineaires
 
+    if pourcentage > 90:
+    st.error("🔴 Remorque presque pleine")
+
+elif pourcentage > 75:
+    st.warning("🟡 Attention")
+
+else:
+    st.success("🟢 Espace disponible")
     st.progress(min(int(pourcentage), 100))
 
     st.caption(
