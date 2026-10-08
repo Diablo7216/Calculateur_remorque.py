@@ -80,7 +80,7 @@ if st.button("Calculer"):
     pourcentage = (pieds_lineaires / LONGUEUR_REMORQUE) * 100
     reste = LONGUEUR_REMORQUE - pieds_lineaires
 
-    st.metric(
+    st.succes(
         f"""
         Pieds linéaires utilisés : {pieds_lineaires:.2f} pi
 
