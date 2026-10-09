@@ -1,3 +1,5 @@
+import pandas as pd
+from io import BytesIO
 import streamlit as st
 
 LARGEUR_REMORQUE = 102  # pouces
@@ -118,6 +120,24 @@ if st.button("📊 Calculer"):
 if st.button("🗑️ Effacer"):
     st.session_state.palettes = []
     st.rerun()
+
+if len(st.session_state.palettes) > 0:
+
+    df = pd.DataFrame(st.session_state.palettes)
+
+    output = BytesIO()
+
+    with pd.ExcelWriter(output, engine="openpyxl") as writer:
+        df.to_excel(writer, sheet_name="Palettes", index=False)
+
+    fichier_excel = output.getvalue()
+
+    st.download_button(
+        label="📥 Export Excel",
+        data=fichier_excel,
+        file_name="chargement.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
 
 st.markdown("---")
 st.markdown(
