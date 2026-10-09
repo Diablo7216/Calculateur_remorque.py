@@ -49,19 +49,8 @@ for i, p in enumerate(st.session_state.palettes):
         if st.button("🗑️", key=f"delete_{i}"):
             st.session_state.palettes.pop(i)
             st.rerun()
-if "resultats" not in st.session_state:
-    st.session_state.resultats = None
-    
-if st.button("📊 Calculer"):
 
-    ...
-    
-    st.session_state.resultats = {
-        "total_palettes": total_palettes,
-        "pieds_lineaires": pieds_lineaires,
-        "pourcentage": pourcentage,
-        "reste": reste
-    }
+if st.button("📊 Calculer"):
 
     longueur_totale_pouces = 0
 
@@ -151,8 +140,5 @@ if len(st.session_state.palettes) > 0:
     )
 
 st.markdown("---")
-st.markdown(
-    "<div style='text-align:center;color:gray;'>🚛 Calculateur Remorque | © 2026 Fred Béland </div>",
-    unsafe_allow_html=True
-)
+st.caption("© 2026 Fred Béland")
 
