@@ -87,7 +87,7 @@ if st.button("📊 Calculer"):
     pourcentage = (pieds_lineaires / LONGUEUR_REMORQUE) * 100
     reste = LONGUEUR_REMORQUE - pieds_lineaires
 
-    if pourcentage > 100:
+if pourcentage > 100:
     st.error(
         f"🚨 Débordement de {pourcentage - 100:.1f}% - Une seule remorque ne suffit pas !"
     )
@@ -107,10 +107,10 @@ else:
         "🟢 Espace disponible"
     )
 
-    total_palettes = sum(
-        p["quantite"]
-        for p in st.session_state.palettes
-    )
+total_palettes = sum(
+    p["quantite"]
+    for p in st.session_state.palettes
+)
 
     st.success(
         f"""
