@@ -121,7 +121,7 @@ if st.button("🗑️ Effacer"):
 
 st.markdown("---")
 st.markdown(
-    "<div style='text-align:center;color:gray;'>🚛 Calculateur Remorque | © 2026 Fred Béland</div>",
+    "<div style='text-align:center;color:gray;'>🚛 Calculateur Remorque | © 2026 Fred Béland </div>",
     unsafe_allow_html=True
 )
 
