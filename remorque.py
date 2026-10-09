@@ -119,25 +119,6 @@ if st.button("🗑️ Effacer"):
     st.session_state.palettes = []
     st.rerun()
 
-import pandas as pd
-from io import BytesIO
-
-df = pd.DataFrame(st.session_state.palettes)
-
-output = BytesIO()
-
-with pd.ExcelWriter(output, engine="openpyxl") as writer:
-    df.to_excel(writer, index=False)
-
-fichier_excel = output.getvalue()
-st.write("✅ Export prêt")
-``
-st.download_button(
-    "📥 Export Excel",
-    data=fichier_excel,
-    file_name="chargement.xlsx",
-    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-)
-
 st.markdown("---")
 st.caption("© 2026 Fred Béland")
+
