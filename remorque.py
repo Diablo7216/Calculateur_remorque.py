@@ -120,5 +120,8 @@ if st.button("🗑️ Effacer"):
     st.rerun()
 
 st.markdown("---")
-st.caption("© 2026 Fred Béland")
+st.markdown(
+    "<div style='text-align:center;color:gray;'>🚛 Calculateur Remorque | © 2026 Fred Béland</div>",
+    unsafe_allow_html=True
+)
 
