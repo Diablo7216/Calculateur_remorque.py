@@ -133,7 +133,8 @@ fichier_excel = output.getvalue()
 st.download_button(
     "📥 Export Excel",
     data=fichier_excel,
-    file_name="chargement.xlsx"
+    file_name="chargement.xlsx",
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 )
 
 st.markdown("---")
