@@ -1,21 +1,22 @@
+import streamlit as st
 import pandas as pd
 from io import BytesIO
-import streamlit as st
 
 LARGEUR_REMORQUE = 102  # pouces
 LONGUEUR_REMORQUE = 53  # pieds
-
-if "palettes" not in st.session_state:
-    st.session_state.palettes = []
 
 st.set_page_config(
     page_title="Calculateur Remorque",
     layout="centered"
 )
 
+if "palettes" not in st.session_state:
+    st.session_state.palettes = []
+
 st.title("🚛 Calculateur d'espace remorque")
 st.write("Calcul de l'espace plancher utilisé dans une remorque de 53 pieds.")
 
+# SAISIE
 col1, col2, col3 = st.columns(3)
 
 with col1:
@@ -34,6 +35,7 @@ if st.button("➕ Ajouter palette"):
         "quantite": quantite
     })
 
+# LISTE DES PALETTES
 st.subheader("📦 Palettes ajoutées")
 
 for i, p in enumerate(st.session_state.palettes):
@@ -50,6 +52,7 @@ for i, p in enumerate(st.session_state.palettes):
             st.session_state.palettes.pop(i)
             st.rerun()
 
+# CALCUL
 if st.button("📊 Calculer"):
 
     longueur_totale_pouces = 0
@@ -57,95 +60,4 @@ if st.button("📊 Calculer"):
     for item in st.session_state.palettes:
 
         dim1 = item["largeur"]
-        dim2 = item["longueur"]
-        qty = item["quantite"]
-
-        palettes_par_rangee_1 = max(
-            1,
-            int(LARGEUR_REMORQUE // dim1)
-        )
-
-        rangees_1 = -(-qty // palettes_par_rangee_1)
-        longueur_1 = rangees_1 * dim2
-
-        palettes_par_rangee_2 = max(
-            1,
-            int(LARGEUR_REMORQUE // dim2)
-        )
-
-        rangees_2 = -(-qty // palettes_par_rangee_2)
-        longueur_2 = rangees_2 * dim1
-
-        meilleure_longueur = min(
-            longueur_1,
-            longueur_2
-        )
-
-        longueur_totale_pouces += meilleure_longueur
-
-    pieds_lineaires = longueur_totale_pouces / 12
-    pourcentage = (pieds_lineaires / LONGUEUR_REMORQUE) * 100
-    reste = LONGUEUR_REMORQUE - pieds_lineaires
-
-if pourcentage > 100:
-    st.error(
-        f"🚨 Débordement de {pourcentage - 100:.1f}% - Une seule remorque ne suffit pas !"
-    )
-
-elif pourcentage > 90:
-    st.error(
-        "🔴 Remorque pleine - capacité presque atteinte"
-    )
-
-elif pourcentage > 75:
-    st.warning(
-        "🟡 Attention : espace limité"
-    )
-
-else:
-    st.success(
-        "🟢 Espace disponible"
-    )
-
-total_palettes = sum(
-    p["quantite"]
-    for p in st.session_state.palettes
-)
-
-st.success(
-        f"""
-&nbsp;📦 Nombre de palettes : {total_palettes}
-
-📏 Pieds linéaires utilisés : {pieds_lineaires:.2f} pi
-
-🚛 Utilisation remorque 53' : {pourcentage:.1f} %
-
-✅ Espace restant : {reste:.2f} pi
-"""
-    )
-
-if st.button("🗑️ Effacer"):
-    st.session_state.palettes = []
-    st.rerun()
-
-if len(st.session_state.palettes) > 0:
-
-    df = pd.DataFrame(st.session_state.palettes)
-
-    output = BytesIO()
-
-    with pd.ExcelWriter(output, engine="openpyxl") as writer:
-        df.to_excel(writer, sheet_name="Palettes", index=False)
-
-    fichier_excel = output.getvalue()
-
-   # st.download_button(
-    #    label="📥 Export Excel",
-    #    data=fichier_excel,
-    #   file_name="chargement.xlsx",
-     #   mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    #)
-
-st.markdown("---")
-st.caption("© 2026 Fred Béland")
-
+  
