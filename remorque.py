@@ -119,7 +119,7 @@ if st.button("🗑️ Effacer"):
     st.session_state.palettes = []
     st.rerun()
     
-st.download_button(
+    st.download_button(
     "📥 Export Excel",
     data=fichier_excel,
     file_name="chargement.xlsx"
