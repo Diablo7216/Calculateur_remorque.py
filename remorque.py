@@ -132,12 +132,12 @@ if len(st.session_state.palettes) > 0:
 
     fichier_excel = output.getvalue()
 
-    st.download_button(
-        label="📥 Export Excel",
-        data=fichier_excel,
-        file_name="chargement.xlsx",
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    )
+   # st.download_button(
+    #    label="📥 Export Excel",
+    #    data=fichier_excel,
+    #   file_name="chargement.xlsx",
+     #   mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    #)
 
 st.markdown("---")
 st.caption("© 2026 Fred Béland")
