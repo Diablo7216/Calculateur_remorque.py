@@ -130,6 +130,8 @@ with pd.ExcelWriter(output, engine="openpyxl") as writer:
     df.to_excel(writer, index=False)
 
 fichier_excel = output.getvalue()
+st.write("✅ Export prêt")
+``
 st.download_button(
     "📥 Export Excel",
     data=fichier_excel,
