@@ -87,17 +87,24 @@ if st.button("📊 Calculer"):
     pourcentage = (pieds_lineaires / LONGUEUR_REMORQUE) * 100
     reste = LONGUEUR_REMORQUE - pieds_lineaires
 
-    if pourcentage > 90:
-        st.error("🔴 Remorque presque pleine")
-    elif pourcentage > 75:
-        st.warning("🟡 Attention : espace limité")
-    else:
-        st.info("🟢 Espace disponible")
+    if pourcentage > 100:
+    st.error(
+        f"🚨 Débordement de {pourcentage - 100:.1f}% - Une seule remorque ne suffit pas !"
+    )
 
-    st.progress(min(int(pourcentage), 100))
+elif pourcentage > 90:
+    st.error(
+        "🔴 Remorque pleine - capacité presque atteinte"
+    )
 
-    st.caption(
-        f"Remplissage de la remorque : {pourcentage:.1f}%"
+elif pourcentage > 75:
+    st.warning(
+        "🟡 Attention : espace limité"
+    )
+
+else:
+    st.success(
+        "🟢 Espace disponible"
     )
 
     total_palettes = sum(
