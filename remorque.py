@@ -101,7 +101,7 @@ total_palettes = sum(
         for p in st.session_state.palettes
     )
 
-    st.success(
+st.success(
         f"""
 &nbsp;📦 Nombre de palettes : {total_palettes}
 
