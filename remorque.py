@@ -92,11 +92,10 @@ if st.button("📊 Calculer"):
     else:
         st.info("🟢 Espace disponible")
 
-    st.progress(min(int(pourcentage), 100))
-
-    st.caption(
-        f"Remplissage de la remorque : {pourcentage:.1f}%"
-    )
+  st.metric(
+    "Remplissage",
+    f"{pourcentage:.1f}%"
+)
 
     total_palettes = sum(
         p["quantite"]
