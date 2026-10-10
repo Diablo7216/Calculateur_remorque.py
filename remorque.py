@@ -97,21 +97,23 @@ st.metric(
     f"{pourcentage:.1f}%"
 )
 total_palettes = sum(
-        p["quantite"]
-        for p in st.session_state.palettes
-    )
+    p["quantite"]
+    for p in st.session_state.palettes
+)
 
-st.success(
-        f"""
-&nbsp;📦 Nombre de palettes : {total_palettes}
+col1, col2, col3, col4 = st.columns(4)
 
-📏 Pieds linéaires utilisés : {pieds_lineaires:.2f} pi
+with col1:
+    st.metric("📦 Palettes", total_palettes)
 
-🚛 Utilisation remorque 53' : {pourcentage:.1f} %
+with col2:
+    st.metric("📏 Utilisé", f"{pieds_lineaires:.1f} pi")
 
-✅ Espace restant : {reste:.2f} pi
-"""
-    )
+with col3:
+    st.metric("✅ Restant", f"{reste:.1f} pi")
+
+with col4:
+    st.metric("🚛 Occupation", f"{pourcentage:.1f}%")
 
 if st.button("🗑️ Effacer"):
     st.session_state.palettes = []
