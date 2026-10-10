@@ -137,5 +137,5 @@ if st.button("📊 Calculer"):
             "🚛 Occupation",
             f"{pourcentage:.1f}%"
         )
-    st
+    
 
