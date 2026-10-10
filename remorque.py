@@ -34,7 +34,14 @@ h1{
 """, unsafe_allow_html=True)
 
 st.title("🚛 Calculateur d'espace remorque")
-st.write("Calcul de l'espace plancher utilisé dans une remorque de 53 pieds.")
+st.markdown(
+    """
+    <div style='text-align:center; font-size:16px; color:#6b7280; margin-bottom:20px;'>
+        Optimisation du chargement d'une remorque de 53 pieds
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 col1, col2, col3 = st.columns(3)
 
