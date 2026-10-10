@@ -120,6 +120,14 @@ if st.button("🗑️ Effacer"):
     st.rerun()
 
 st.markdown("---")
-st.caption("© 2026 Fred Béland")
+st.markdown(
+    """
+    <div style='text-align:center; color:#7f8c8d; font-size:12px;'>
+        🚛 Calculateur de chargement remorque 53' <br>
+        © 2026 Fred Béland | Version 1.0
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
   
