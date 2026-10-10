@@ -33,15 +33,7 @@ h1{
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-<h1 style='text-align:center;'>
-🚛 Calculateur de chargement remorque
-</h1>
-""", unsafe_allow_html=True)
-
-st.caption(
-    "Optimisation automatique du chargement d'une remorque de 53 pieds"
-)
+st.title("🚛 Calculateur d'espace remorque")
 st.write("Calcul de l'espace plancher utilisé dans une remorque de 53 pieds.")
 
 col1, col2, col3 = st.columns(3)
