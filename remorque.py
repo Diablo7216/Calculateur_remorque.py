@@ -33,7 +33,15 @@ h1{
 </style>
 """, unsafe_allow_html=True)
 
-st.title("🚛 Calculateur d'espace remorque")
+st.markdown("""
+<h1 style='text-align:center;'>
+🚛 Calculateur de chargement remorque
+</h1>
+""", unsafe_allow_html=True)
+
+st.caption(
+    "Optimisation automatique du chargement d'une remorque de 53 pieds"
+)
 st.write("Calcul de l'espace plancher utilisé dans une remorque de 53 pieds.")
 
 col1, col2, col3 = st.columns(3)
@@ -122,16 +130,7 @@ if st.button("📊 Calculer"):
         st.metric("📏 Utilisé", f"{pieds_lineaires:.1f} pi")
 
     with col3:
-        if pourcentage > 100:
-        st.metric(
-            "🚨 Débordement",
-            f"{debordement:.1f} pi"
-        )
-    else:
-        st.metric(
-            "✅ Restant",
-            f"{reste:.1f} pi"
-        )
+        st.metric("✅ Restant", f"{reste:.1f} pi")
 
     with col4:
         st.metric("🚛 Occupation", f"{pourcentage:.1f}%")
@@ -175,4 +174,3 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
