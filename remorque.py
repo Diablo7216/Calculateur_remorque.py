@@ -122,7 +122,16 @@ if st.button("📊 Calculer"):
         st.metric("📏 Utilisé", f"{pieds_lineaires:.1f} pi")
 
     with col3:
-        st.metric("✅ Restant", f"{reste:.1f} pi")
+    if pourcentage > 100:
+        st.metric(
+            "🚨 Débordement",
+            f"{debordement:.1f} pi"
+        )
+    else:
+        st.metric(
+            "✅ Restant",
+            f"{reste:.1f} pi"
+        )
 
     with col4:
         st.metric("🚛 Occupation", f"{pourcentage:.1f}%")
