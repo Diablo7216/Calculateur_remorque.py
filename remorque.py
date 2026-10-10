@@ -106,7 +106,7 @@ if st.button("📊 Calculer"):
     pieds_lineaires = longueur_totale_pouces / 12
     pourcentage = (pieds_lineaires / LONGUEUR_REMORQUE) * 100
     reste = max(0, LONGUEUR_REMORQUE - pieds_lineaires)
-debordement = max(0, pieds_lineaires - LONGUEUR_REMORQUE)
+    debordement = max(0, pieds_lineaires - LONGUEUR_REMORQUE)
     total_palettes = sum(
         p["quantite"]
         for p in st.session_state.palettes
