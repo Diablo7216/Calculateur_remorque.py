@@ -10,6 +10,28 @@ st.set_page_config(
     page_title="Calculateur Remorque",
     layout="centered"
 )
+st.markdown("""
+<style>
+
+div[data-testid="metric-container"]{
+    background:#ffffff;
+    border:1px solid #e5e7eb;
+    padding:18px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+
+.stProgress > div > div > div > div{
+    height:28px;
+    border-radius:15px;
+}
+
+h1{
+    text-align:center;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 st.title("🚛 Calculateur d'espace remorque")
 st.write("Calcul de l'espace plancher utilisé dans une remorque de 53 pieds.")
