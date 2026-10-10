@@ -60,4 +60,87 @@ if st.button("📊 Calculer"):
 
         palettes_par_rangee_1 = max(
             1,
-            int(LARGEUR_REMORQUE //
+            int(LARGEUR_REMORQUE // dim1)
+        )
+
+        rangees_1 = -(-qty // palettes_par_rangee_1)
+        longueur_1 = rangees_1 * dim2
+
+        palettes_par_rangee_2 = max(
+            1,
+            int(LARGEUR_REMORQUE // dim2)
+        )
+
+        rangees_2 = -(-qty // palettes_par_rangee_2)
+        longueur_2 = rangees_2 * dim1
+
+        meilleure_longueur = min(
+            longueur_1,
+            longueur_2
+        )
+
+        longueur_totale_pouces += meilleure_longueur
+
+    pieds_lineaires = longueur_totale_pouces / 12
+    pourcentage = (pieds_lineaires / LONGUEUR_REMORQUE) * 100
+    reste = LONGUEUR_REMORQUE - pieds_lineaires
+
+    total_palettes = sum(
+        p["quantite"]
+        for p in st.session_state.palettes
+    )
+
+    # Tableau de bord
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        st.metric("📦 Palettes", total_palettes)
+
+    with col2:
+        st.metric("📏 Utilisé", f"{pieds_lineaires:.1f} pi")
+
+    with col3:
+        st.metric("✅ Restant", f"{reste:.1f} pi")
+
+    with col4:
+        st.metric("🚛 Occupation", f"{pourcentage:.1f}%")
+
+    # Messages d'état
+    if pourcentage > 100:
+        st.error(
+            f"🚨 Débordement de {pourcentage - 100:.1f}% - Une seule remorque ne suffit pas !"
+        )
+    elif pourcentage > 90:
+        st.error("🔴 Remorque presque pleine")
+    elif pourcentage > 75:
+        st.warning("🟡 Attention : espace limité")
+    else:
+        st.success("🟢 Espace disponible")
+
+    # Barre de progression
+    st.progress(min(pourcentage / 100, 1.0))
+
+    st.markdown(
+        f"""
+        <div style='text-align:center; font-weight:bold;'>
+            Remplissage de la remorque : {pourcentage:.1f}%
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+if st.button("🗑️ Effacer"):
+    st.session_state.palettes = []
+    st.rerun()
+
+st.markdown("---")
+
+st.markdown(
+    """
+    <div style='text-align:center; color:#7f8c8d; font-size:12px;'>
+        🚛 Calculateur de chargement remorque 53'<br>
+        © 2026 Fred Béland | Version 1.0
+    </div>
+    """,
+    unsafe_allow_html=True
+)
