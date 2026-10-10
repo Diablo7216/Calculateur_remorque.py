@@ -96,7 +96,7 @@ st.metric(
     "Remplissage",
     f"{pourcentage:.1f}%"
 )
-    total_palettes = sum(
+total_palettes = sum(
         p["quantite"]
         for p in st.session_state.palettes
     )
